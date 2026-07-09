@@ -1,6 +1,11 @@
 import { NextResponse } from 'next/server';
 import { calendar } from '@/lib/googleCalendar';
 
+interface CleanEvent {
+  start: string;
+  end: string;
+}
+
 export async function GET() {
   try {
     const now = new Date();
@@ -15,9 +20,19 @@ export async function GET() {
       orderBy: 'startTime',
     });
 
-    const events = response.data.items || [];
+    const googleEvents = response.data.items || [];
 
-    return NextResponse.json({ success: true, events });
+    const cleanedEvents: CleanEvent[] = googleEvents.map((event) => {
+      const startStr = event.start?.dateTime || event.start?.date || '';
+      const endStr = event.end?.dateTime || event.end?.date || '';
+
+      return {
+        start: startStr,
+        end: endStr,
+      };
+    });
+
+    return NextResponse.json({ success: true, cleanedEvents });
   } catch (error: any) {
     console.error('Error fetching calendar events:', error);
     return NextResponse.json(
