@@ -33,10 +33,11 @@ export async function GET() {
     });
 
     return NextResponse.json({ success: true, cleanedEvents });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error fetching calendar events:', error);
+    const message = error instanceof Error ? error.message : 'Internal Server Error';
     return NextResponse.json(
-      { success: false, error: error.message || 'Internal Server Error' },
+      { success: false, error: message },
       { status: 500 }
     );
   }
