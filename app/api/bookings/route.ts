@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { calendar } from '@/lib/googleCalendar';
-import { supabaseAdmin } from '@/lib/supabaseAdmin';
+import { prisma } from '@/lib/prisma';
 
 interface BookingRequestBody {
   studentName: string;
@@ -77,18 +77,20 @@ export async function POST(request: Request) {
     const meetLink = createdEvent.hangoutLink || '';
     const googleEventId = createdEvent.id || '';
 
-    const { error: dbError } = await supabaseAdmin.from('bookings').insert({
-      student_name: studentName,
-      student_email: studentEmail,
-      start_time: slotStart.toISOString(),
-      end_time: slotEnd.toISOString(),
-      google_event_id: googleEventId,
-      meet_link: meetLink,
-    });
-
-    if (dbError) {
+    try {
+      await prisma.booking.create({
+        data: {
+          studentName,
+          studentEmail,
+          startTime: slotStart,
+          endTime: slotEnd,
+          googleEventId,
+          meetLink,
+        },
+      });
+    } catch (dbError) {
       await calendar.events.delete({ calendarId: 'primary', eventId: googleEventId });
-      throw new Error(`Error al guardar en la base de datos: ${dbError.message}`);
+      throw new Error('Error al guardar en la base de datos.');
     }
 
     return NextResponse.json({
