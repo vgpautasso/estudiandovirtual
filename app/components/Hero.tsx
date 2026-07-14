@@ -3,10 +3,10 @@
 import { Sparkles, Laptop, Clock, FileDown, ArrowDown } from 'lucide-react';
 
 interface HeroProps {
-  onReserve: () => void;
+  onHowItWorksClick: () => void;
 }
 
-export default function Hero({ onReserve }: HeroProps) {
+export default function Hero({ onHowItWorksClick }: HeroProps) {
   return (
     <section className="relative flex flex-col items-center justify-center min-h-[92vh] text-center px-4 overflow-hidden">
       
@@ -50,10 +50,10 @@ export default function Hero({ onReserve }: HeroProps) {
 
         <div className="pt-4">
           <button
-            onClick={onReserve}
+            onClick={onHowItWorksClick}
             className="inline-block py-4 px-10 rounded-full font-bold text-lg bg-[#1F3A34] text-[#F5F1E8] hover:bg-[#16302A] hover:text-[#E8B94D] transition-all duration-300 transform hover:scale-105 active:scale-[0.98] shadow-xl shadow-[#1F3A34]/20 cursor-pointer"
           >
-            Reservar una clase
+            ¿Cómo funciona?
           </button>
         </div>
       </div>
