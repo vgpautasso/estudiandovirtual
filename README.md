@@ -25,14 +25,22 @@ This project is built using a modern and efficient development stack:
 
 ## 🚀 Getting Started (Local Development)
 
-### 1. Database (Docker)
+### 1. Clone the Repository
+Clone the project and navigate into the project directory:
+
+```bash
+git clone https://github.com/vgpautasso/estudiandovirtual.git
+cd estudiandovirtual
+```
+
+### 2. Database (Docker)
 Start the local database container in the background:
 
 ```bash
 docker compose up -d
 ```
 
-### 2. Application (Next.js)
+### 3. Application (Next.js)
 Install the dependencies and start the local development server:
 
 ```bash
