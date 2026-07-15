@@ -207,7 +207,7 @@ export default function BookingForm() {
                 : 'bg-[#1F3A34] text-[#F5F1E8] hover:bg-[#16302A] hover:shadow-[#1F3A34]/10'
             }`}
           >
-            {submitting ? 'Procesando tu lugar...' : 'Confirmar clase particular'}
+            {submitting ? 'Procesando tu lugar...' : 'Confirmar clase'}
           </button>
         </form>
       </div>

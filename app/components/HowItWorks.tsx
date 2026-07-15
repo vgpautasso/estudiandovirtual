@@ -1,6 +1,6 @@
 'use client';
 
-import { CalendarDays, Presentation, FileDown } from 'lucide-react';
+import { CalendarDays, CreditCard, Presentation } from 'lucide-react';
 
 interface HowItWorksProps {
   onReserve: () => void;
@@ -32,7 +32,7 @@ export default function HowItWorks({ onReserve }: HowItWorksProps) {
           </div>
           <h3 className="font-bold text-lg text-[#1F3A34]">Reservás tu horario</h3>
           <p className="text-sm text-[#6B6B63] leading-relaxed">
-            Elegís la hora que te quede cómoda en el calendario de abajo. El sistema te genera y envía el enlace de Google Meet al instante.
+            Elegís la hora que te quede cómoda en el calendario de abajo. Las reservas son de <strong>1 hora</strong>, pero podés agendar más de una sesión si necesitás más tiempo.
           </p>
         </div>
 
@@ -41,11 +41,11 @@ export default function HowItWorks({ onReserve }: HowItWorksProps) {
             2
           </div>
           <div className="p-3 w-12 h-12 rounded-xl bg-[#1F3A34]/10 text-[#1F3A34] flex items-center justify-center group-hover:bg-[#1F3A34] group-hover:text-[#F5F1E8] transition-colors duration-300">
-            <Presentation size={24} />
+            <CreditCard size={24} />
           </div>
-          <h3 className="font-bold text-lg text-[#1F3A34]">Pizarra Interactiva</h3>
+          <h3 className="font-bold text-lg text-[#1F3A34]">Confirmás con el pago</h3>
           <p className="text-sm text-[#6B6B63] leading-relaxed">
-            Resolvemos los ejercicios juntos en una pizarra digital en tiempo real. Prestá atención sin preocuparte por tomar apuntes a las corridas.
+            Realizás el pago de forma rápida y segura. Una vez confirmado, el sistema te genera automáticamente el enlace de <strong>Google Meet</strong> y te envía los detalles por mail.
           </p>
         </div>
 
@@ -54,11 +54,11 @@ export default function HowItWorks({ onReserve }: HowItWorksProps) {
             3
           </div>
           <div className="p-3 w-12 h-12 rounded-xl bg-[#1F3A34]/10 text-[#1F3A34] flex items-center justify-center group-hover:bg-[#1F3A34] group-hover:text-[#F5F1E8] transition-colors duration-300">
-            <FileDown size={24} className="group-hover:text-[#E8B94D]" />
+            <Presentation size={24} className="group-hover:text-[#E8B94D]" />
           </div>
-          <h3 className="font-bold text-lg text-[#1F3A34]">Pizarra Descargable</h3>
+          <h3 className="font-bold text-lg text-[#1F3A34]">Clase y Pizarra en PDF</h3>
           <p className="text-sm text-[#6B6B63] leading-relaxed">
-            Al finalizar, te llevás un archivo PDF descargable con todo el desarrollo de la clase listo para estudiar y repasar cuando quieras.
+            Resolvemos todo en vivo usando una pizarra interactiva. Concentrate en entender sin apuro por tomar apuntes; al finalizar te descargás toda la clase en un archivo PDF.
           </p>
         </div>
       </div>
