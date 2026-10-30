@@ -91,24 +91,24 @@ export default function BookingForm() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto rounded-3xl bg-[#F5F1E8] overflow-hidden text-[#2B2B28] border border-[#E4DFCF] shadow-2xl transition-all duration-500">
-      <div className="bg-[#1F3A34] text-center py-10 px-8 relative">
+    <div className="max-w-2xl mx-auto rounded-3xl bg-page overflow-hidden text-ink border border-border shadow-2xl transition-all duration-500">
+      <div className="bg-primary-bg text-center py-10 px-8 relative">
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.02),transparent)] pointer-events-none" />
-        <h3 className="font-[family-name:var(--font-kalam)] text-4xl sm:text-5xl text-[#F5F1E8]">
+        <h3 className="font-[family-name:var(--font-kalam)] text-4xl sm:text-5xl text-on-primary">
           Elegí tu clase
         </h3>
-        <p className="text-sm sm:text-base text-[#9CB3AC] mt-2 font-medium tracking-wide">
+        <p className="text-sm sm:text-base text-header-muted mt-2 font-medium tracking-wide">
           Horarios disponibles, próximos 7 días
         </p>
       </div>
 
-      <div className="p-8 sm:p-10 bg-white/40 backdrop-blur-sm">
+      <div className="p-8 sm:p-10 bg-surface-muted backdrop-blur-sm">
         {message && (
           <div
             className={`p-4 mb-6 rounded-xl text-sm font-semibold border transition-all ${
               message.type === 'success'
-                ? 'bg-[#EAF3DE] text-[#3B6D11] border-[#C0DD97]'
-                : 'bg-[#FAECE7] text-[#993C1D] border-[#F0997B]'
+                ? 'bg-success-bg text-success-ink border-success-border'
+                : 'bg-error-bg text-error-ink border-error-border'
             }`}
           >
             {message.text}
@@ -123,7 +123,7 @@ export default function BookingForm() {
               value={studentName}
               onChange={(e) => setStudentName(e.target.value)}
               placeholder="Tu nombre completo"
-              className="w-full px-4 py-3.5 bg-white border border-[#D8D2C0] rounded-xl text-base outline-none focus:border-[#1F3A34] focus:ring-2 focus:ring-[#1F3A34]/10 transition-all placeholder-[#A19D90]"
+              className="w-full px-4 py-3.5 bg-surface border border-border-strong rounded-xl text-base outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all placeholder:text-placeholder"
             />
             <input
               type="email"
@@ -131,13 +131,13 @@ export default function BookingForm() {
               value={studentEmail}
               onChange={(e) => setStudentEmail(e.target.value)}
               placeholder="Tu correo electrónico"
-              className="w-full px-4 py-3.5 bg-white border border-[#D8D2C0] rounded-xl text-base outline-none focus:border-[#1F3A34] focus:ring-2 focus:ring-[#1F3A34]/10 transition-all placeholder-[#A19D90]"
+              className="w-full px-4 py-3.5 bg-surface border border-border-strong rounded-xl text-base outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all placeholder:text-placeholder"
             />
           </div>
 
           <div className="max-h-96 overflow-y-auto pr-2 space-y-6 scrollbar-thin">
             {Object.keys(groupedSlots).length === 0 ? (
-              <p className="text-[#6B6B63] text-sm italic text-center py-6">
+              <p className="text-muted text-sm italic text-center py-6">
                 No hay horarios disponibles por el momento.
               </p>
             ) : (
@@ -147,7 +147,7 @@ export default function BookingForm() {
                   const parsedDate = parseISO(`${dateKey}T00:00:00`);
                   return (
                     <div key={dateKey} className="space-y-3">
-                      <p className="text-xs font-bold uppercase tracking-wider text-[#1F3A34] border-b border-dashed border-[#C8C1AC] pb-1.5 capitalize">
+                      <p className="text-xs font-bold uppercase tracking-wider text-primary border-b border-dashed border-border-subtle pb-1.5 capitalize">
                         {format(parsedDate, "EEEE, d 'de' MMMM", { locale: es })}
                       </p>
                       <div className="grid grid-cols-4 gap-2.5">
@@ -161,14 +161,14 @@ export default function BookingForm() {
                               onClick={() => setSelectedSlot(slotStr)}
                               className={`relative py-2.5 rounded-xl text-sm font-semibold border transition-all duration-300 transform active:scale-95 ${
                                 isSelected
-                                  ? 'bg-[#1F3A34] text-[#E8B94D] border-[#1F3A34] shadow-md scale-[1.03]'
-                                  : 'bg-white text-[#2B2B28] border-[#D8D2C0] hover:border-[#1F3A34] hover:bg-[#F5F1E8]/30'
+                                  ? 'bg-primary-bg text-accent border-primary-bg shadow-md scale-[1.03]'
+                                  : 'bg-surface text-ink border-border-strong hover:border-primary hover:bg-page'
                               }`}
                             >
                               {format(slotDate, 'HH:mm')} hs
                               {isSelected && (
                                 <span
-                                  className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#E8B94D] flex items-center justify-center"
+                                  className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-accent flex items-center justify-center"
                                   aria-hidden="true"
                                 >
                                   <svg
@@ -180,7 +180,7 @@ export default function BookingForm() {
                                   >
                                     <path
                                       d="M1.5 5L4 7.5L8.5 2.5"
-                                      stroke="#1F3A34"
+                                      stroke="var(--primary)"
                                       strokeWidth="2"
                                       strokeLinecap="round"
                                       strokeLinejoin="round"
@@ -203,8 +203,8 @@ export default function BookingForm() {
             disabled={submitting || !selectedSlot}
             className={`w-full py-4 rounded-xl font-bold text-lg transition-all duration-300 transform active:scale-[0.99] shadow-lg ${
               submitting || !selectedSlot
-                ? 'bg-[#D8D2C0] text-[#8A8575] cursor-not-allowed shadow-none'
-                : 'bg-[#1F3A34] text-[#F5F1E8] hover:bg-[#16302A] hover:shadow-[#1F3A34]/10'
+                ? 'bg-disabled-bg text-disabled-ink cursor-not-allowed shadow-none'
+                : 'bg-primary-bg text-on-primary hover:bg-primary-hover hover:shadow-primary/10'
             }`}
           >
             {submitting ? 'Procesando tu lugar...' : 'Confirmar clase'}

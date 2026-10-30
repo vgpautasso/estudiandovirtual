@@ -1,14 +1,41 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useRef, useState, useSyncExternalStore } from 'react';
 import Hero from './components/Hero';
 import HowItWorks from './components/HowItWorks';
 import BookingForm from './components/BookingForm';
 
+function subscribeToTheme(onChange: () => void) {
+  window.addEventListener('storage', onChange);
+  window.addEventListener('theme-change', onChange);
+  return () => {
+    window.removeEventListener('storage', onChange);
+    window.removeEventListener('theme-change', onChange);
+  };
+}
+
+function getThemeSnapshot(): 'light' | 'dark' {
+  return window.localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
+}
+
+function getServerThemeSnapshot(): 'light' | 'dark' {
+  return 'light';
+}
+
 export default function Home() {
+  const theme = useSyncExternalStore(
+    subscribeToTheme,
+    getThemeSnapshot,
+    getServerThemeSnapshot,
+  );
   const [showBooking, setShowBooking] = useState(false);
   const howItWorksRef = useRef<HTMLDivElement>(null);
   const bookingRef = useRef<HTMLDivElement>(null);
+
+  const handleThemeToggle = () => {
+    window.localStorage.setItem('theme', theme === 'light' ? 'dark' : 'light');
+    window.dispatchEvent(new Event('theme-change'));
+  };
 
   const handleScrollToHowItWorks = () => {
     howItWorksRef.current?.scrollIntoView({ 
@@ -28,9 +55,16 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F1E8] text-[#2B2B28] font-[family-name:var(--font-poppins)] selection:bg-[#1F3A34] selection:text-[#F5F1E8] scroll-smooth">
+    <div
+      data-theme={theme}
+      className="min-h-screen bg-page text-ink font-[family-name:var(--font-poppins)] selection:bg-primary-bg selection:text-on-primary scroll-smooth transition-colors duration-300"
+    >
       
-      <Hero onHowItWorksClick={handleScrollToHowItWorks} />
+      <Hero
+        theme={theme}
+        onThemeToggle={handleThemeToggle}
+        onHowItWorksClick={handleScrollToHowItWorks}
+      />
 
       <div ref={howItWorksRef} className="scroll-mt-12">
         <HowItWorks onReserve={handleReserve} />
