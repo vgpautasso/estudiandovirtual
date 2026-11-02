@@ -32,19 +32,23 @@ export default function Hero({ theme, onThemeToggle, onHowItWorksClick }: HeroPr
         <span>Modo {theme === 'light' ? 'oscuro' : 'claro'}</span>
       </button>
 
-      <div className="relative max-w-2xl space-y-8 py-12 flex flex-col items-center">
+      <div className="relative max-w-4xl space-y-6 py-10 flex flex-col items-center">
         
         <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider">
           <Sparkles size={12} className="text-accent animate-pulse" />
           Clases particulares de matemática
         </span>
 
-        <h1 className="text-5xl sm:text-7xl font-extrabold tracking-tight text-primary leading-tight select-none">
+        <h1 className="text-6xl sm:text-8xl font-extrabold tracking-tight text-primary leading-[1.05] select-none">
           Estudiando{' '}
           <span className="font-[family-name:var(--font-kalam)] font-bold text-accent bg-primary-bg px-4 py-1 rounded-2xl block sm:inline-block transform rotate-[-1.5deg] mt-3 sm:mt-0 shadow-lg shadow-primary/10">
             Virtual
           </span>
         </h1>
+
+        <p className="max-w-2xl text-base sm:text-xl leading-relaxed text-muted">
+          Clases de matemática online, claras y a tu ritmo.
+        </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full pt-2">
           <div className="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-surface-muted border border-border text-muted text-sm font-medium">

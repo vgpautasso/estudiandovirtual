@@ -91,7 +91,7 @@ export default function BookingForm() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto rounded-3xl bg-page overflow-hidden text-ink border border-border shadow-2xl transition-all duration-500">
+    <div className="max-w-4xl mx-auto rounded-3xl bg-page overflow-hidden text-ink border border-border shadow-2xl transition-all duration-500">
       <div className="bg-primary-bg text-center py-10 px-8 relative">
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.02),transparent)] pointer-events-none" />
         <h3 className="font-[family-name:var(--font-kalam)] text-4xl sm:text-5xl text-on-primary">
@@ -147,10 +147,10 @@ export default function BookingForm() {
                   const parsedDate = parseISO(`${dateKey}T00:00:00`);
                   return (
                     <div key={dateKey} className="space-y-3">
-                      <p className="text-xs font-bold uppercase tracking-wider text-primary border-b border-dashed border-border-subtle pb-1.5 capitalize">
+                      <p className="text-sm font-bold uppercase tracking-wider text-primary border-b border-dashed border-border-subtle pb-2 capitalize">
                         {format(parsedDate, "EEEE, d 'de' MMMM", { locale: es })}
                       </p>
-                      <div className="grid grid-cols-4 gap-2.5">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                         {groupedSlots[dateKey].map((slotStr) => {
                           const slotDate = parseISO(slotStr);
                           const isSelected = selectedSlot === slotStr;
@@ -159,7 +159,7 @@ export default function BookingForm() {
                               key={slotStr}
                               type="button"
                               onClick={() => setSelectedSlot(slotStr)}
-                              className={`relative py-2.5 rounded-xl text-sm font-semibold border transition-all duration-300 transform active:scale-95 ${
+                              className={`relative py-4 rounded-xl text-base font-semibold border transition-all duration-300 transform active:scale-95 ${
                                 isSelected
                                   ? 'bg-primary-bg text-accent border-primary-bg shadow-md scale-[1.03]'
                                   : 'bg-surface text-ink border-border-strong hover:border-primary hover:bg-page'
